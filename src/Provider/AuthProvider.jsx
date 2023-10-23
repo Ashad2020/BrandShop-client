@@ -14,7 +14,7 @@ const googleProvider = new GoogleAuthProvider();
 // eslint-disable-next-line react/prop-types
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState({});
-  console.log(user);
+  // console.log(user);
   const [loading, setLoading] = useState(true);
   const googleLogin = () => {
     setLoading(true);

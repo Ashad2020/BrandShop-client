@@ -5,7 +5,7 @@ import BrandCard from "../../components/BrandCard/BrandCard";
 export default function Home() {
   const loadedBrand = useLoaderData();
 
-  console.log("Loaded brand", loadedBrand);
+  // console.log("Loaded brand", loadedBrand);
   return (
     <>
       <Banner></Banner>

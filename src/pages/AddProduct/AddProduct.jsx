@@ -13,7 +13,19 @@ export default function AddProduct() {
 
   const handleAddProduct = (event) => {
     event.preventDefault();
-
+    fetch("http://localhost:5000/product", {
+      method: "POSt",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
     setProduct({
       brand: "",
       productName: "",
@@ -110,8 +122,14 @@ export default function AddProduct() {
                 <option disabled value="">
                   Product Category
                 </option>
-                <option>T-shirts</option>
-                <option>Mugs</option>
+                <option>Science Kit</option>
+                <option>Smart Watch</option>
+                <option>Mouse</option>
+                <option>Keyboard</option>
+                <option>Router</option>
+                <option>Power-Bank</option>
+                <option>Headphone</option>
+                <option>UPS & Stabilizer</option>
               </select>
             </div>
           </div>
@@ -140,7 +158,7 @@ export default function AddProduct() {
             <textarea
               placeholder="Short Description"
               name="description"
-              className="textarea textarea-bordered textarea-md w-full max-w-xs"
+              className="textarea textarea-bordered textarea-md w-full"
               value={product.description}
               onChange={handleInputChange}
             ></textarea>
