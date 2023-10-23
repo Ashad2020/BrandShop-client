@@ -85,7 +85,7 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li>
-            <a>Add Product</a>
+            <NavLink to={"/addproduct"}>Add Product</NavLink>
           </li>
           <li>
             <a>My Cart</a>
