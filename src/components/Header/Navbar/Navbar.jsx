@@ -121,7 +121,7 @@ export default function Navbar() {
       </div>
       <div className="navbar-end">
         {user?.email ? (
-          <div className="flex items-center gap-2 text-xl">
+          <div className="flex items-center gap-2 text-sm md:text-xl">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
                 <img src={user.photoURL} alt="Photo of user" />

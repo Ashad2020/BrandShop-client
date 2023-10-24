@@ -5,10 +5,13 @@ export default function BrandDetails() {
   const Products = useLoaderData();
 
   return Products.length
-    ? Products.length > 0 &&
-        Products.map((product) => (
-          <ProductCard key={product._id} product={product} />
-        ))
+    ? Products.length > 0 && (
+        <div className="p-12 grid md:grid-cols-3">
+          {Products.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+        </div>
+      )
     : !Products.length && (
         <img
           src="https://i.ibb.co/yXWXYwH/no-product-found.png"

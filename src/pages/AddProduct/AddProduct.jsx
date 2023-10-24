@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function AddProduct() {
   const [product, setProduct] = useState({
@@ -24,7 +25,9 @@ export default function AddProduct() {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        if (data.insertedId) {
+          toast.success("Product added successfully");
+        }
       });
     setProduct({
       brand: "",

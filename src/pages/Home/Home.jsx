@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import Banner from "../../components/Header/Banner/Banner";
 import BrandCard from "../../components/BrandCard/BrandCard";
 import Latest from "../../components/LatestProduct/Latest";
+import Review from "../../components/CustomerReview/Review";
 
 export default function Home() {
   const loadedBrand = useLoaderData();
@@ -19,6 +20,7 @@ export default function Home() {
         })}
       </div>
       <Latest></Latest>
+      <Review></Review>
     </>
   );
 }
