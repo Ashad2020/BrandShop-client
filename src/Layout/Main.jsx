@@ -9,7 +9,7 @@ export default function Main() {
       <Navbar></Navbar>
       <Outlet></Outlet>
       <div>
-        <Toaster />
+        <Toaster position="bottom-right" />
       </div>
       <Footer></Footer>
     </>
