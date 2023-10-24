@@ -1,0 +1,67 @@
+import { Link, useLoaderData } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+
+export default function DetailsCard() {
+  const { user } = useAuth();
+
+  const loadedProduct = useLoaderData();
+  const {
+    _id,
+    brand,
+    productName,
+    photoUrl,
+    category,
+    price,
+    description,
+    rating,
+  } = loadedProduct;
+
+  const handleAddToCart = () => {
+    const addToCart = {
+      uid: user.uid,
+      email: user.email,
+      brand,
+      productName,
+      photoUrl,
+      category,
+      price,
+      description,
+      rating,
+    };
+
+    fetch("http://localhost:5000/cart", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(addToCart),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
+  return (
+    <div className="card w-96 bg-green-100 shadow-xl mx-auto">
+      <figure className="px-10 pt-10">
+        <img
+          src={photoUrl}
+          alt={category}
+          className="rounded-xl h-60 w-4/5 object-cover"
+        />
+      </figure>
+      <div className="card-body items-center text-center">
+        <h2 className="card-title">{productName}</h2>
+        <p>{description}</p>
+        <div className="card-actions">
+          <button onClick={handleAddToCart} className="btn btn-primary">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

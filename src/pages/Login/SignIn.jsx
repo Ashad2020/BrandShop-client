@@ -5,7 +5,7 @@ import useAuth from "../../hooks/useAuth";
 
 export default function SignIn() {
   const navigate = useNavigate();
-  const { loginUser } = useAuth();
+  const { loginUser, user } = useAuth();
 
   const handleSignIn = (event) => {
     event.preventDefault();
@@ -20,6 +20,16 @@ export default function SignIn() {
       .then((res) => {
         toast.success("Logged In successfully");
         if (res.user?.email) {
+          fetch(`http://localhost:5000/user/${res.user?.uid}`)
+            .then((res) => {
+              return res.json();
+            })
+            .then((data) => {
+              // if (data.insertedId) {
+              //   alert("user added database");
+              // }
+              console.log(data);
+            });
           navigate("/");
         }
       })

@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useLoaderData } from "react-router-dom";
 
-export default function AddProduct() {
+export default function UpdateProduct() {
   const [product, setProduct] = useState({
     brand: "",
     productName: "",
@@ -10,11 +12,23 @@ export default function AddProduct() {
     description: "",
     rating: "",
   });
+  const loadedProduct = useLoaderData();
+  const {
+    _id,
+    brand,
+    productName,
+    photoUrl,
+    category,
+    price,
+    description,
+    rating,
+  } = loadedProduct;
+  console.log(loadedProduct);
 
-  const handleAddProduct = (event) => {
+  const handleUpdateProduct = (event) => {
     event.preventDefault();
-    fetch("http://localhost:5000/product", {
-      method: "POST",
+    fetch(`http://localhost:5000/product/${_id}`, {
+      method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
@@ -24,7 +38,9 @@ export default function AddProduct() {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.success("Product modified successfully");
+        }
       });
     setProduct({
       brand: "",
@@ -51,7 +67,7 @@ export default function AddProduct() {
   return (
     <div className="hero bg-base-200 py-12">
       <div className="card flex-shrink-0 w-full max-w-2xl shadow-2xl bg-base-100">
-        <form onSubmit={handleAddProduct} className="card-body">
+        <form onSubmit={handleUpdateProduct} className="card-body">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Brand Name</span>
@@ -61,6 +77,7 @@ export default function AddProduct() {
                 name="brand"
                 className="select select-bordered"
                 onChange={handleInputChange}
+                defaultValue={brand}
                 value={product.brand}
                 required
               >
@@ -87,6 +104,7 @@ export default function AddProduct() {
               name="productName"
               className="input input-bordered"
               required
+              defaultValue={productName}
               value={product.productName}
               onChange={handleInputChange}
             />
@@ -102,6 +120,7 @@ export default function AddProduct() {
               name="photoUrl"
               className="input input-bordered"
               required
+              defaultValue={photoUrl}
               value={product.photoUrl}
               onChange={handleInputChange}
             />
@@ -116,6 +135,7 @@ export default function AddProduct() {
                 name="category"
                 className="select select-bordered"
                 onChange={handleInputChange}
+                defaultValue={category}
                 value={product.category}
                 required
               >
@@ -144,6 +164,7 @@ export default function AddProduct() {
               name="price"
               className="input input-bordered"
               required
+              defaultValue={price}
               value={product.price}
               onChange={handleInputChange}
             />
@@ -159,6 +180,7 @@ export default function AddProduct() {
               placeholder="Short Description"
               name="description"
               className="textarea textarea-bordered textarea-md w-full"
+              defaultValue={description}
               value={product.description}
               onChange={handleInputChange}
             ></textarea>
@@ -173,6 +195,7 @@ export default function AddProduct() {
                 name="rating"
                 className="select select-bordered"
                 onChange={handleInputChange}
+                defaultValue={rating}
                 value={product.rating}
                 required
               >
@@ -189,7 +212,7 @@ export default function AddProduct() {
           </div>
 
           <div className="form-control mt-6">
-            <button className="btn btn-primary">Add Product</button>
+            <button className="btn btn-primary">Update Product</button>
           </div>
         </form>
       </div>

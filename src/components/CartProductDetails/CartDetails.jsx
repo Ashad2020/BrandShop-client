@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function ProductCard({ product }) {
+export default function CartDetails({ product }) {
   const {
     _id,
     brand,
@@ -24,12 +24,7 @@ export default function ProductCard({ product }) {
         <h2 className="card-title">{productName}</h2>
         <p>{brand}</p>
         <div className="card-actions">
-          <Link to={`/updateproduct/${_id}`}>
-            <button className="btn btn-primary">Update</button>
-          </Link>
-          <Link to={`/productdetails/${_id}`}>
-            <button className="btn btn-primary">Details</button>
-          </Link>
+          <button className="btn btn-primary">Delete</button>
         </div>
       </div>
     </div>

@@ -25,6 +25,7 @@ export default function SingUp() {
 
     createUser(email, password)
       .then(() => {
+        console.log(auth.currentUser);
         return updateProfile(auth.currentUser, {
           displayName: name,
           photoURL: photoURL,
@@ -32,11 +33,33 @@ export default function SingUp() {
       })
       .then(() => {
         toast.success("User Created Successfully");
+        if (auth.currentUser?.email) {
+          const createdAt = auth.currentUser?.metadata?.creationTime;
+          const uid = auth.currentUser?.uid;
+          const email = auth.currentUser?.email;
+          const user = {
+            email,
+            createdAt,
+            uid,
+          };
+          fetch(`http://localhost:5000/user`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(user),
+          })
+            .then((res) => {
+              return res.json();
+            })
+            .then((data) => {
+              if (!data.insertedId) {
+                toast.error("This user already exist!");
+              }
+            });
+        }
         logOut();
         navigate("/signin");
       })
       .catch((error) => {
-        console.log(error);
         toast.error(error.message);
       });
   };
@@ -97,7 +120,6 @@ export default function SingUp() {
             <button className="btn btn-primary">Sing Up</button>
           </div>
         </form>
-        <SocialLogin></SocialLogin>
         <label className="label px-4 text-sm">
           Have an account?{" "}
           <Link to="/signin" className="label-text-alt link link-hover text-sm">
