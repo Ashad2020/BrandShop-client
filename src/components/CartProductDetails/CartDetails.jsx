@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
-export default function CartDetails({ product }) {
+export default function CartDetails({ product, Products, setProducts }) {
   const {
     _id,
     brand,
@@ -11,8 +11,24 @@ export default function CartDetails({ product }) {
     description,
     rating,
   } = product;
+
+  const handleDelete = () => {
+    fetch(`http://localhost:5000/cart/${_id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          toast.success("Product removed from your cart!");
+        }
+      });
+    const updateedProducts = Products.filter((product) => product._id != _id);
+    console.log(_id);
+    console.log(updateedProducts);
+    setProducts(updateedProducts);
+  };
   return (
-    <div className="card w-96 bg-green-100 shadow-xl">
+    <div className="card bg-green-100 shadow-xl">
       <figure className="px-10 pt-10">
         <img
           src={photoUrl}
@@ -24,7 +40,9 @@ export default function CartDetails({ product }) {
         <h2 className="card-title">{productName}</h2>
         <p>{brand}</p>
         <div className="card-actions">
-          <button className="btn btn-primary">Delete</button>
+          <button onClick={handleDelete} className="btn btn-primary">
+            Delete
+          </button>
         </div>
       </div>
     </div>

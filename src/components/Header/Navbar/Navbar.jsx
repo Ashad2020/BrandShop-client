@@ -59,7 +59,7 @@ export default function Navbar() {
             </li>
             <li>
               <NavLink
-                to={`/cart/${user.uid}`}
+                to={`/cart/${user?.uid}`}
                 className={({ isActive, isPending }) =>
                   isPending
                     ? "pending"
@@ -73,8 +73,12 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <Link to="/" className="flex h-8 w-72">
-          Logo
+        <Link to="/" className="flex h-12 w-62">
+          <img
+            src="https://i.ibb.co/sWqj3QP/logo-1.png"
+            alt="logo-1"
+            border="0"
+          />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -105,7 +109,7 @@ export default function Navbar() {
           </li>
           <li className="text-xl">
             <NavLink
-              to={`/cart/${user.uid}`}
+              to={`/cart/${user?.uid}`}
               className={({ isActive, isPending }) =>
                 isPending
                   ? "pending"

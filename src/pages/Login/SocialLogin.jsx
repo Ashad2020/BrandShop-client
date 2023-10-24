@@ -58,7 +58,7 @@ export default function SocialLogin() {
     <div className="mx-auto">
       <button
         onClick={() => handleSocialLogin(googleLogin)}
-        className="btn bg-[#74e0e0]"
+        className="btn btn-ghost hover:bg-primary hover:text-white"
       >
         Continue with Google
       </button>

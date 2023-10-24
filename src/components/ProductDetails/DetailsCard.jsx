@@ -1,5 +1,6 @@
 import { Link, useLoaderData } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 export default function DetailsCard() {
   const { user } = useAuth();
@@ -40,12 +41,14 @@ export default function DetailsCard() {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        if (data.insertedId) {
+          toast.success("Product added in your cart");
+        }
       });
   };
 
   return (
-    <div className="card w-96 bg-green-100 shadow-xl mx-auto">
+    <div className="card w-96 bg-green-100 shadow-xl mx-auto my-8">
       <figure className="px-10 pt-10">
         <img
           src={photoUrl}

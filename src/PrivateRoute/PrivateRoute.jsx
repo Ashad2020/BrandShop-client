@@ -5,10 +5,14 @@ import useAuth from "../hooks/useAuth";
 export default function PrivateRoute({ children }) {
   let { user, loading } = useAuth();
   if (loading) {
-    return <h1>Loading</h1>;
+    return (
+      <div className="text-center text-2xl">
+        <span className="loading loading-spinner text-primary loading-lg"></span>
+      </div>
+    );
   }
   if (!user?.email) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/signin" />;
   }
   return children;
 }

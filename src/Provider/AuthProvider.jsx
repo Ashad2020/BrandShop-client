@@ -28,7 +28,6 @@ export default function AuthProvider({ children }) {
   };
 
   const loginUser = (email, password) => {
-    // console.log("email and password from authProvider:", email, password);
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
@@ -50,7 +49,7 @@ export default function AuthProvider({ children }) {
     user,
     loading,
   };
-  // console.log("user from auth", user);
+
   return (
     <AuthContext.Provider value={authentications}>
       {children}

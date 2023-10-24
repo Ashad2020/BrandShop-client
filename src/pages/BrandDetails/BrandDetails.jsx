@@ -6,7 +6,7 @@ export default function BrandDetails() {
 
   return Products.length
     ? Products.length > 0 && (
-        <div className="p-12 grid md:grid-cols-3">
+        <div className="p-12 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {Products.map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}
