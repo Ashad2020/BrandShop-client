@@ -13,9 +13,12 @@ export default function CartDetails({ product, Products, setProducts }) {
   } = product;
 
   const handleDelete = () => {
-    fetch(`http://localhost:5000/cart/${_id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://brand-shop-server-7eqgjgoe9-md-ashads-projects.vercel.app/cart/${_id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {

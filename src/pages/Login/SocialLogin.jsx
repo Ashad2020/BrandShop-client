@@ -14,7 +14,9 @@ export default function SocialLogin() {
         toast.success("Logged In successfully");
         console.log("firebase res", res);
         if (res.user?.email) {
-          fetch(`http://localhost:5000/user/${res.user?.uid}`)
+          fetch(
+            `https://brand-shop-server-7eqgjgoe9-md-ashads-projects.vercel.app/user/${res.user?.uid}`
+          )
             .then((response) => {
               console.log(auth.currentUser?.uid);
               return response.json();
@@ -32,11 +34,14 @@ export default function SocialLogin() {
                     createdAt,
                     uid,
                   };
-                  fetch(`http://localhost:5000/user`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(user),
-                  })
+                  fetch(
+                    `https://brand-shop-server-7eqgjgoe9-md-ashads-projects.vercel.app/user`,
+                    {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify(user),
+                    }
+                  )
                     .then((res) => {
                       return res.json();
                     })

@@ -27,13 +27,16 @@ export default function UpdateProduct() {
 
   const handleUpdateProduct = (event) => {
     event.preventDefault();
-    fetch(`http://localhost:5000/product/${_id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(product),
-    })
+    fetch(
+      `https://brand-shop-server-7eqgjgoe9-md-ashads-projects.vercel.app/product/${_id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(product),
+      }
+    )
       .then((res) => {
         return res.json();
       })

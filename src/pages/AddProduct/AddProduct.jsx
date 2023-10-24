@@ -14,13 +14,16 @@ export default function AddProduct() {
 
   const handleAddProduct = (event) => {
     event.preventDefault();
-    fetch("http://localhost:5000/product", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(product),
-    })
+    fetch(
+      "https://brand-shop-server-7eqgjgoe9-md-ashads-projects.vercel.app/product",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(product),
+      }
+    )
       .then((res) => {
         return res.json();
       })

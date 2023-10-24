@@ -20,16 +20,18 @@ export default function SignIn() {
       .then((res) => {
         toast.success("Logged In successfully");
         if (res.user?.email) {
-          fetch(`http://localhost:5000/user/${res.user?.uid}`)
-            .then((res) => {
-              return res.json();
-            })
-            .then((data) => {
-              // if (data.insertedId) {
-              //   alert("user added database");
-              // }
-              console.log(data);
-            });
+          // fetch(
+          //   `https://brand-shop-server-7eqgjgoe9-md-ashads-projects.vercel.app/user/${res.user?.uid}`
+          // )
+          //   .then((res) => {
+          //     return res.json();
+          //   })
+          //   .then((data) => {
+          //     // if (data.insertedId) {
+          //     //   alert("user added database");
+          //     // }
+          //     console.log(data);
+          //   });
           navigate("/");
         }
       })

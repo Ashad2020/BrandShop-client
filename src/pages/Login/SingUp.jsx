@@ -33,29 +33,32 @@ export default function SingUp() {
       })
       .then(() => {
         toast.success("User Created Successfully");
-        if (auth.currentUser?.email) {
-          const createdAt = auth.currentUser?.metadata?.creationTime;
-          const uid = auth.currentUser?.uid;
-          const email = auth.currentUser?.email;
-          const user = {
-            email,
-            createdAt,
-            uid,
-          };
-          fetch(`http://localhost:5000/user`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(user),
-          })
-            .then((res) => {
-              return res.json();
-            })
-            .then((data) => {
-              if (!data.insertedId) {
-                toast.error("This user already exist!");
-              }
-            });
-        }
+        //if (auth.currentUser?.email) {
+        // const createdAt = auth.currentUser?.metadata?.creationTime;
+        // const uid = auth.currentUser?.uid;
+        // const email = auth.currentUser?.email;
+        // const user = {
+        //   email,
+        //   createdAt,
+        //   uid,
+        // };
+        // fetch(
+        //   `https://brand-shop-server-7eqgjgoe9-md-ashads-projects.vercel.app/user`,
+        //   {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify(user),
+        //   }
+        // )
+        //   .then((res) => {
+        //     return res.json();
+        //   })
+        //   .then((data) => {
+        //     if (!data.insertedId) {
+        //       toast.error("This user already exist!");
+        //     }
+        //   });
+        // }
         logOut();
         navigate("/signin");
       })

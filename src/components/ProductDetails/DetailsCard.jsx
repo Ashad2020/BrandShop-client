@@ -30,13 +30,16 @@ export default function DetailsCard() {
       rating,
     };
 
-    fetch("http://localhost:5000/cart", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(addToCart),
-    })
+    fetch(
+      "https://brand-shop-server-7eqgjgoe9-md-ashads-projects.vercel.app/cart",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(addToCart),
+      }
+    )
       .then((res) => {
         return res.json();
       })
@@ -57,7 +60,8 @@ export default function DetailsCard() {
         />
       </figure>
       <div className="card-body items-center text-center">
-        <h2 className="card-title">{productName}</h2>
+        <h2 className="card-title">Product Name: {productName}</h2>
+        <p>Brand Name: {brand}</p>
         <p>{description}</p>
         <div className="card-actions">
           <button onClick={handleAddToCart} className="btn btn-primary">
