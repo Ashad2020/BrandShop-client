@@ -1,4 +1,4 @@
-Live link:
+Live link: https://brand-shop-6dd50.web.app/
 
 - Firebase's authentication system authenticates users.
 - Users can add products, and those products are stored in MongoDB using an API.
