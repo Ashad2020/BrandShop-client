@@ -1,7 +1,7 @@
 export default function Advertisement() {
   return (
     <div className="flex justify-center py-12 w-full border-4">
-      <div className="carousel max-h-full w-1/2">
+      <div className="carousel max-h-full w-full md:w-1/2">
         <div id="slide1" className="carousel-item relative w-full">
           <img src="https://i.ibb.co/HrSNb3Z/ad.jpg" alt="ad" border="0"></img>
 
